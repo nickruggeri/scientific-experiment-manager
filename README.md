@@ -21,6 +21,7 @@ At its core, SEM is based on
 and simply creates, parses and manages intricate folder structures containing 
 experimental results.  
 
+<br/><br/>
 ## Minimal example
 Consider the results organized in the `example/example_results` folder. \
 These are different directories containing the results of the same experiment, where two
@@ -122,11 +123,12 @@ def load_mat(path):
 df["mat"] = df["__PATH__"].map(load_mat)
 ```
 
+<br/><br/>
 ## Creating default paths
-Standardizing the creation of result structure results in less lines of code written for 
-simple IO operations, as well as compatibility across machines, e.g. local vs cloud or 
+Standardizing result structure reduces the amount of code needed for 
+simple IO operations, and eases compatibility across machines, e.g. local vs cloud or 
 cluster results. \
-For this reason, <i>SEM</i> offers a way to create saving paths 
+To this end, <i>SEM</i> offers a way to create saving paths 
 which only depend on the parameters specified by the user. \
 For example, the paths of a repository with three levels and different parameters, 
 can be created as:
@@ -156,9 +158,9 @@ tmp/param1=True_param2=b/results_of_my_experiments/param3=1
 tmp/param1=False_param2=a/results_of_my_experiments/param3=1
 ...
 ```
-If desired, the argument `auto_sort` imposes a uniform order at directory every level. \
+If desired, the argument `auto_sort` imposes a uniform order at every directory level.\
 For example, using
-`{"param2": param2, "param1": param1}` would produce the same paths if
+`{"param2": param2, "param1": param1}` would produce the same paths a above if
 `auto_sort=True`. \
 Parsing directories with this structure is similarly easy:
 ```python
@@ -183,11 +185,12 @@ which yields
 ...
 ```
 
+<br/><br/>
 ## Initialization
 Notice that the advantage of using the default directory naming, as opposed to a custom
-one, is that the ResultManager can be initialized as above by only specifying the 
-arguments in `ResultManager.from_arguments`, as presented above. \
-A more flexible initialization for custom paths, can be performed by giving in input 
+one, is that the `ResultManager` can be initialized as above, by only specifying the 
+arguments in `ResultManager.from_arguments`. \
+A more flexible initialization for custom paths, can be performed by giving as input 
 regular expression patterns. For example, an equivalent initialization to that above is 
 given by: 
 
@@ -201,12 +204,12 @@ manager = ResultManager(root_dir, parsers)
 manager.parse_paths()
 ```
 
-
+<br/><br/>
 ## Other utilities and tricks
 ### Filtering results
 Another useful `ResultManager` method is `ResultManager.filter`. This method filters the
 <i>rows</i> of the results' data frame. Results can be selected by specifying exact 
-column values or a list of possible values. For example, for a manager whose dataframe 
+column values or a list of possible values. For example, for a manager whose data frame 
 has columns
 ```
                                              __PATH__ param1 param2 param3
@@ -234,8 +237,10 @@ yields a filtered data frame
 
 ### Loading fewer results
 While results can be filtered a posteriori as just explained, one can also load fewer 
-results in the first place. This is done by specifying an appropriate regular expression 
-parser in the first place. For example, to select only configurations where 
+results in the first place. \
+This is done by specifying an appropriate regular expression 
+parser in the first place.  
+For example, to select only configurations where 
 `param1` is equal to `True`, one can write
 ```python
 parsers = [
@@ -250,8 +255,8 @@ In general, any regular expression with named groups is considered valid, check
 for further details. 
 
 ### Common parsing patterns
-Some common regular expression patterns are available at `sem.re_patterns`. 
-These are strings that can be utilized, for initializing parsers 
+Some common regular expression patterns are available at `sem.re_patterns`. \
+These are strings that can be utilized for initializing parsers 
 ```python
 from sem.re_patterns import INT_PATTERN
 
@@ -276,7 +281,7 @@ manager = ResultManager.from_arguments(
 
 
 ### Common type conversion from string
-Some common type conversion functions from string are available at `sem.str_to_type`.\ 
+Some common type conversion functions from string are available at `sem.str_to_type`. \
 These are useful in combination with the `argparse` package, for command line inputs
 ```python
 from argparse import ArgumentParser
@@ -300,7 +305,7 @@ manager.parse_paths()
 manager.df["flag"] = manager.df["flag"].map(bool_type)
 ```
 
-
+<br/><br/>
 ## Installation
 You can install this package by downloading the GitHub repository and, from inside the
 downloaded folder, running

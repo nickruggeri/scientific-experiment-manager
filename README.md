@@ -310,5 +310,5 @@ manager.df["flag"] = manager.df["flag"].map(bool_type)
 You can install this package by downloading the GitHub repository and, from inside the
 downloaded folder, running
 ```
-python setup.py install
+pip install .
 ```

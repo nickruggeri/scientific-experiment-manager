@@ -307,8 +307,9 @@ manager.df["flag"] = manager.df["flag"].map(bool_type)
 
 <br/><br/>
 ## Installation
-You can install this package by downloading the GitHub repository and, from inside the
-downloaded folder, running
+The package is available via PyPi 
+([homepage](https://pypi.org/project/scientific-experiment-manager/0.1.0/)) and can be
+installed as:
 ```
-pip install .
+pip install scientific-experiment-manager
 ```
